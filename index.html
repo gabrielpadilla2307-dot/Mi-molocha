@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>molocha ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Texto */
+.text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 65%;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Corazones */
+.heart {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: red;
+  transform: rotate(45deg);
+  animation: fadeIn 2s ease forwards, beat 1s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -6px;
+  left: 0;
+}
+
+.heart::after {
+  left: -6px;
+  top: 0;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1) rotate(45deg);}
+  50% { transform: scale(1.4) rotate(45deg);}
+}
+
+/* Estrellas */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from {opacity: 0.2;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="text">molocha ❤️</div>
+
+<script>
+// Crear estrellas
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  document.body.appendChild(star);
+}
+
+// Crear corazón
+for (let t = 0; t < Math.PI * 2; t += 0.05) {
+
+  let x = 16 * Math.pow(Math.sin(t), 3);
+  let y = 13 * Math.cos(t) 
+        - 5 * Math.cos(2 * t) 
+        - 2 * Math.cos(3 * t) 
+        - Math.cos(4 * t);
+
+  let heart = document.createElement("div");
+  heart.className = "heart";
+
+  heart.style.left = (window.innerWidth / 2 + x * 15) + "px";
+  heart.style.top = (window.innerHeight / 2 - y * 15) + "px";
+
+  heart.style.animationDelay = (t) + "s";
+
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
